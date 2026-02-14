@@ -7,7 +7,6 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-        console.log("add item", state, action);
         const { name, image, cost } = action.payload;
         const existingItem = state.items.find(item => item.name === name);
         if (existingItem) {
@@ -17,7 +16,8 @@ export const CartSlice = createSlice({
         }
     },
     removeItem: (state, action) => {
-        state.items = state.items.filter(item => item.name !==  action.payload);
+        console.log("REMOVE ITEM", action.payload, "filtered", state.items.filter(item => item.name !== action.payload), "whole", state.items, )
+        state.items = state.items.filter(item => item.name !==  action.payload.name);
     },
     updateQuantity: (state, action) => {
         const { name, quantity } = action.payload;
